@@ -58,7 +58,12 @@ function App() {
     try {
       // Use your backend URL
      // Final production URL
-const response = await axios.post('https://speech-to-text-backend-tpqu.onrender.com/api/transcribe', formData);
+// Ensure there is no extra slash at the end of the base URL
+const response = await axios.post('https://speech-to-text-backend-tpqu.onrender.com/api/transcribe', formData, {
+  headers: {
+    'Content-Type': 'multipart/form-data'
+  }
+});
       setTranscription(response.data.text);
     } catch (error) {
       console.error("Error:", error);
